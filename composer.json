@@ -1,0 +1,23 @@
+{
+  "name": "kmasteryc/lovesimple",
+  "description": "Love simple framework",
+  "authors": [
+    {
+      "name": "Khanh Tran",
+      "email": "kmasterycsl@gmail.com"
+    }
+  ],
+  "require": {
+    "symfony/http-foundation": "^3.1",
+    "twig/twig": "^1.24",
+    "league/flysystem": "^1.0",
+    "symfony/dependency-injection": "^3.1",
+    "symfony/config": "^3.1",
+    "symfony/yaml": "^3.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "LoveSimple\\" : "src/"
+    }
+  }
+}
