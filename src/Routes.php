@@ -10,23 +10,19 @@ namespace LoveSimple;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
+//@todo: Build name route module
 class Routes extends DIContainer
 {
     protected $routes;
     protected $path;
     protected $method;
     private $_request;
-    protected $controller;
+    protected $controller = '';
 
     public function __construct()
     {
         parent::__construct();
-        $this->getRoutes();
-    }
-
-    public function getRoutes()
-    {
-        $this->routes = require(__DIR__ . "/Config/routes.php");
+        $this->getRoutesConfig();
     }
 
     public function getController(Request $request)
@@ -34,50 +30,100 @@ class Routes extends DIContainer
         $this->path = $request->getPathInfo();
         $this->method = strtolower($request->getMethod());
         $this->_request = $request;
-        if ($this->dispatchRoute() === true) {
+        $this->dispatchRoute();
+
+        if ($this->controller != '') {
             return $this->controller;
         } else {
             return Response::create("Not found!", 404);
         }
     }
 
-    public function dispatchRoute()
+    private function getRoutesConfig()
     {
-        $URIS = explode('/',$this->_request->getPathInfo());
+        $this->routes = require(__DIR__ . "/Config/routes.php");
+    }
 
-        $controller = $URIS[1];
+    private function dispatchRoute()
+    {
+        $requestURIS = explode('/', $this->_request->getPathInfo());
+        $realURIS_segments = [];
+        foreach ($requestURIS as $URI) {
+            if ($URI != '') {
+                $realURIS_segments[] = $URI;
+            }
+        }
+//        ddd($realURIS_segments);
+        $count_realURIS = count($realURIS_segments);
 
-        $bind_params = [];
-        $route_match = '';
+        $routes_in_method = $this->routes[$this->_request->getMethod()];
+        $routes = array_keys($routes_in_method);
+        $this->removeEndSlash($routes);
+//        ddd($routes);
 
-        foreach ($this->routes as $url=>$route){
-            $url_segments = explode('/',$url);
-            if ($controller == $url_segments[1] && count($URIS) == count($url_segments)){
-                $mix = array_slice($url_segments,2);
-                $i = 0;
-                foreach ($mix as $param)
-                {
-                    if (strpos($param,'?}') === false && strpos($param,'}') === false){
-                        if ($URIS[$i+2] == $param)
-                        {
-                            $route_match = $route;
-                        }
-                    }else{
-                        $bind_params[$param] = $URIS[$i+2];
-                    }
-                    $i++;
+        foreach ($routes as $route) {
+            $route_segments = explode('/', $route);
+            $count_segments = count($route_segments);
+            if ($count_realURIS === $count_segments) {
+                $route_with_config = $routes_in_method[$route];
+                $result = $this->compareUriToRoute($realURIS_segments, $route_segments, $route_with_config);
+                if ($result !== false) {
+
+                    $controller_method = explode('@', $route_with_config['page']);
+                    $controller = $controller_method[0];
+                    $method = $controller_method[1];
+//                    array_push($result, $this->_request);
+                    $this->controller = call_user_func_array([$this->container->get($controller), $method], $result);
+
                 }
             }
         }
-        if ($route_match != ''){
-            $route_arg = explode('@',$route_match);
-            $controller = $route_arg[0];
-            $method = $route_arg[1];
-            array_push($bind_params,$this->_request);
-            $this->controller = call_user_func_array([$this->container->get($controller),$method],$bind_params);
-            return true;
-        }else{
+    }
+
+    private function removeEndSlash(array &$arr)
+    {
+        $res = [];
+        foreach ($arr as $item) {
+            $parts = explode('/', $item);
+            if ($parts[count($parts) - 1] == '') {
+                array_pop($parts);
+            }
+            $res[] = implode('/', $parts);
+        }
+        $arr = $res;
+    }
+
+    private function compareUriToRoute(array $URI_segments, array $route_segments, array $route_with_config)
+    {
+        $params = [];
+        $match = true;
+        foreach ($route_segments as $k => $route_segment) {
+            if (strpos($route_segment, '{') || strpos($route_segment, '}')) {
+                $extracted_var = str_replace(['{','}'],'',$route_segment);
+                if (array_key_exists($extracted_var, $route_with_config)){
+                    $pattern = $route_with_config[$extracted_var];
+                    //Convert to negative pattern
+                    $pattern = str_replace("[","[^",$pattern);
+                    // If false pattern true => false
+                    if (preg_match("/$pattern/",$URI_segments[$k]) == true){
+                        $match = false;
+                    }else{
+                        $params[$extracted_var] = $URI_segments[$k];
+                    }
+                }else{
+                    $params[$extracted_var] = $URI_segments[$k];
+                }
+            } else {
+                if ($URI_segments[$k] !== $route_segment) {
+                    $match = false;
+                }
+            }
+        }
+        if ($match === false) {
             return false;
+        } else {
+            return $params;
         }
     }
+
 }
