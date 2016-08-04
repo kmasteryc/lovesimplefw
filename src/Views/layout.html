@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title | default("Love Simple Framework") }}</title>
+    {% for css in assets['css'] %}
+        <link rel="stylesheet" href="{{ css }}">
+    {% endfor %}
+</head>
+<body>
+
+    {{ include("layouts/nav.html") }}
+
+    {{ include(page) }}
+
+    {% for js in assets['js'] %}
+        <script src="{{ js }}"></script>
+    {% endfor %}
+
+</body>
+</html>

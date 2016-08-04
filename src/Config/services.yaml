@@ -1,0 +1,17 @@
+parameters:
+    template_dir: "../src/Views"
+services:
+    loader:
+        class: Twig_Loader_Filesystem
+        arguments: ['%template_dir%']
+    twig_debug:
+        class: Twig_Extension_Debug
+    twig:
+        class: Twig_Environment
+        arguments:
+            - '@loader'
+            -  debug : 'true'
+        calls:
+            - [addExtension, ['@twig_debug']]
+    home:
+        class: LoveSimple\Controllers\HomeController
