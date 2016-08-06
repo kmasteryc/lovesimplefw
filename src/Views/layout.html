@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>{{ title | default("Love Simple Framework") }}</title>
+    <link rel="stylesheet" href="{{ url }}assets/css/app.css">
     {% for css in assets['css'] %}
-        <link rel="stylesheet" href="{{ css }}">
+        <link rel="stylesheet" href="{{ url }}assets/css/{{ css }}">
     {% endfor %}
 </head>
 <body>
@@ -14,7 +15,7 @@
     {{ include(page) }}
 
     {% for js in assets['js'] %}
-        <script src="{{ js }}"></script>
+        <script src="{{ url }}assets/js/{{ js }}"></script>
     {% endfor %}
 
 </body>

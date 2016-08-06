@@ -1,3 +1,5 @@
+imports:
+  - {resource: "../config/parameters.yaml"}
 parameters:
     template_dir: "../src/Views"
 services:
@@ -13,5 +15,9 @@ services:
             -  debug : 'true'
         calls:
             - [addExtension, ['@twig_debug']]
-    home:
-        class: LoveSimple\Controllers\HomeController
+    capsule:
+        class: Illuminate\Database\Capsule\Manager
+        calls:
+            - [addConnection, ['%db_config%']]
+            - [setAsGlobal]
+            - [bootEloquent]

@@ -11,13 +11,16 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\Config\FileLocator;
 
-class DIContainer{
-    protected $container;
+trait DIContainer{
 
-    public function __construct()
+    public function container($name='')
     {
-        $this->container = new ContainerBuilder();
-        $loader = new YamlFileLoader($this->container, new FileLocator(__DIR__));
-        $loader->load(__DIR__.'/Config/services.yaml');
+        $container = new ContainerBuilder();
+        $loader = new YamlFileLoader($container, new FileLocator(__DIR__));
+        $loader->load(appDir('config/dependencies.yaml'));
+        if ($name != ''){
+            return $container->get($name);
+        }
+        return $container;
     }
 }

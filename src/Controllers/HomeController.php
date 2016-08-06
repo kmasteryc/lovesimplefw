@@ -22,7 +22,8 @@ class HomeController extends Controller
     public function getIndex($name = 'You')
     {
         return $this->view('home.index', [
-            'name' => $name
+            'name' => $name,
+            'js' => ['jquery.min.js']
         ]);
     }
     public function postIndex(Request $request){

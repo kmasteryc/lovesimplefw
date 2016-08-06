@@ -1,0 +1,10 @@
+default:
+    page: "home@welcome"
+GET:
+    "home/index/{name}":
+        page: "HomeController@getIndex"
+POST:
+    "home/index/":
+        page: "HomeController@postIndex"
+PATCH:
+DELETE:

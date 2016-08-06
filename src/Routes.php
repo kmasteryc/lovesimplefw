@@ -10,8 +10,9 @@ namespace LoveSimple;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class Routes extends DIContainer
+class Routes
 {
+    use DIContainer;
     protected $routes;
     protected $path;
     protected $method;
@@ -20,7 +21,6 @@ class Routes extends DIContainer
 
     public function __construct()
     {
-        parent::__construct();
         $this->getRoutesConfig();
     }
 
@@ -40,7 +40,7 @@ class Routes extends DIContainer
 
     private function getRoutesConfig()
     {
-        $this->routes = require(__DIR__ . "/Config/routes.php");
+        $this->routes = yaml_decode(appDir('config/routes.yaml'));
     }
 
     private function dispatchRoute()
@@ -52,22 +52,19 @@ class Routes extends DIContainer
                 $realURIS_segments[] = $URI;
             }
         }
-//        ddd($realURIS_segments);
         $count_realURIS = count($realURIS_segments);
 
         $routes_in_method = $this->routes[$this->_request->getMethod()];
-//        dd($routes_in_method);
+
         $this->removeEndSlash($routes_in_method);
         $routes = array_keys($routes_in_method);
 
-
-
         foreach ($routes as $route) {
-            echo $route;
+
             $route_segments = explode('/', $route);
             $count_segments = count($route_segments);
             if ($count_realURIS === $count_segments) {
-//                dd($routes_in_method);
+
                 $route_with_config = $routes_in_method[$route];
                 $result = $this->compareUriToRoute($realURIS_segments, $route_segments, $route_with_config);
                 if ($result !== false) {
@@ -76,7 +73,8 @@ class Routes extends DIContainer
                     $controller = $controller_method[0];
                     $method = $controller_method[1];
                     array_push($result, $this->_request);
-                    $this->controller = call_user_func_array([$this->container->get($controller), $method], $result);
+                    $controller_in_namespace = "\\LoveSimple\\Controllers\\".$controller;
+                    $this->controller = call_user_func_array([new $controller_in_namespace, $method], $result);
 
                 }
             }

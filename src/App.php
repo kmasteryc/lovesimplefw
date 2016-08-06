@@ -9,12 +9,12 @@ namespace LoveSimple;
 
 use Symfony\Component\HttpFoundation\Request;
 
-class App extends DIContainer
+class App
 {
+    use DIContainer;
     protected $route;
     public function __construct()
     {
-        parent::__construct();
         $this->route = new Routes;
     }
 
