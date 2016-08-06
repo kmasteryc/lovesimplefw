@@ -10,41 +10,19 @@ return [
        'page' => 'home@welcome'
     ],
     'GET' => [
-        'home/create' => [
-            'page' => 'home@create'
-        ],
-        'home/{id}' => [
-            'page' => 'home@show',
-        ],
-        'bai-hat/{id}/edit' => [
-            'page' => 'home@edit',
-            'id' => '[1-50]',
-            'name' => 'editHome'
-        ],
-        '{default}' => [
-            'page' => 'home@index',
-            'default' => '[a-zA-Z]+'
+        'home/index/{name}' => [
+            'page' => 'home@getIndex'
         ]
     ],
     'POST' => [
-        'home' => [
-            'page' => 'home@store'
+        'home/index/' => [
+            'page' => 'home@postIndex'
         ]
     ],
     'PATCH' => [
-        'home{id}' => [
-            'page' => 'home@update'
-        ]
+
     ],
     'DELETE' => [
-        'home/{id}' => [
-            'page' => 'home@delete'
-        ]
+
     ]
 ];
-
-
-
-//return [
-//    '/home/dd/ss/{name}' => 'home@index',
-//];

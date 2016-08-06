@@ -10,7 +10,6 @@ namespace LoveSimple;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-//@todo: Build name route module
 class Routes extends DIContainer
 {
     protected $routes;
@@ -57,14 +56,18 @@ class Routes extends DIContainer
         $count_realURIS = count($realURIS_segments);
 
         $routes_in_method = $this->routes[$this->_request->getMethod()];
+//        dd($routes_in_method);
+        $this->removeEndSlash($routes_in_method);
         $routes = array_keys($routes_in_method);
-        $this->removeEndSlash($routes);
-//        ddd($routes);
+
+
 
         foreach ($routes as $route) {
+            echo $route;
             $route_segments = explode('/', $route);
             $count_segments = count($route_segments);
             if ($count_realURIS === $count_segments) {
+//                dd($routes_in_method);
                 $route_with_config = $routes_in_method[$route];
                 $result = $this->compareUriToRoute($realURIS_segments, $route_segments, $route_with_config);
                 if ($result !== false) {
@@ -72,7 +75,7 @@ class Routes extends DIContainer
                     $controller_method = explode('@', $route_with_config['page']);
                     $controller = $controller_method[0];
                     $method = $controller_method[1];
-//                    array_push($result, $this->_request);
+                    array_push($result, $this->_request);
                     $this->controller = call_user_func_array([$this->container->get($controller), $method], $result);
 
                 }
@@ -83,12 +86,13 @@ class Routes extends DIContainer
     private function removeEndSlash(array &$arr)
     {
         $res = [];
-        foreach ($arr as $item) {
+        foreach ($arr as $item=>$value) {
             $parts = explode('/', $item);
             if ($parts[count($parts) - 1] == '') {
                 array_pop($parts);
             }
-            $res[] = implode('/', $parts);
+            $new_key = implode('/', $parts);
+            $res[$new_key] = $value;
         }
         $arr = $res;
     }

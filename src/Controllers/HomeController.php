@@ -8,9 +8,9 @@
 
 namespace LoveSimple\Controllers;
 
-use Symfony\Component\HttpFoundation\Request;
 use LoveSimple\Controller;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 
 class HomeController extends Controller
 {
@@ -19,20 +19,15 @@ class HomeController extends Controller
         parent::__construct();
     }
 
-
-    public function index($name = 'Khanh')
+    public function getIndex($name = 'You')
     {
         return $this->view('home.index', [
-            'js' => ['test.js'],
             'name' => $name
         ]);
     }
-    public function edit($id){
+    public function postIndex(Request $request){
         return $this->view('home.index', [
-            'name' => $id
+            'name' => $request->get('name')
         ]);
-    }
-    public function store(){
-        return Response::create("You can only get here by using POST method!");
     }
 }
