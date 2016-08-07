@@ -7,13 +7,16 @@
  */
 namespace LoveSimple;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 
 class Controller{
     use DIContainer;
     protected $twig;
+    protected $requestVars;
     public function __construct()
     {
         $this->twig = $this->container('twig');
+        $this->requestVars =Request::createFromGlobals()->request;
     }
     public function view($page, $data = []){
 
