@@ -1,0 +1,37 @@
+<div class="single_page">
+    <ol class="breadcrumb">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#">Admin panel</a></li>
+        <li class="active">Category</li>
+    </ol>
+    <h1>Add new category</h1>
+
+    <div class="single_page_content">
+        <form action="/cate/store" method="post" class="form-horizontal" role="form">
+
+            <div class="form-group">
+                <label for="cate_title" class="col-md-2">Cate title</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="cate_title">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="cate_title" class="col-md-2">Cate's parent</label>
+                <div class="col-sm-10">
+                    <select class="form-control" name="cate_parent">
+                        <option value="0">*ROOT*</option>
+                        {{ cates|raw }}
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-10 col-sm-offset-2">
+                    <button type="submit" class="btn btn-black">Create</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+

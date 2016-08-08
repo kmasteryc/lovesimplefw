@@ -27,7 +27,12 @@ class Routes
     public function getController(Request $request)
     {
         $this->path = $request->getPathInfo();
-        $this->method = strtolower($request->getMethod());
+        $this->method = strtoupper($request->getMethod());
+
+        if (in_array(strtoupper($request->get("_method")), ['PUT','PATCH','DELETE'])){
+            $this->method = $request->get("_method");
+        }
+
         $this->_request = $request;
         $this->dispatchRoute();
 
@@ -54,7 +59,7 @@ class Routes
         }
         $count_realURIS = count($realURIS_segments);
 
-        $routes_in_method = $this->routes[$this->_request->getMethod()];
+        $routes_in_method = $this->routes[$this->method];
 
         $this->removeEndSlash($routes_in_method);
         $routes = array_keys($routes_in_method);

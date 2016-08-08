@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ title | default("Love Simple Framework") }}</title>
+
+    <link rel="stylesheet" href="{{ url }}assets/css/app.css">
+    {#<link rel="stylesheet" href="{{ url }}assets/css/bootstrap.min.css">#}
+    {% for css in assets['css'] %}
+        <link rel="stylesheet" href="{{ url }}assets/css/{{ css }}">
+    {% endfor %}
+    <!-- Bootstrap -->
+    <!-- for fontawesome icon css file -->
+    <link href="{{url}}assets/css/font-awesome.min.css" rel="stylesheet">
+    <!-- for content animate css file -->
+    <link rel="stylesheet" href="{{ url }}assets/css/animate.css">
+    <!-- google fonts  -->
+    <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Varela' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <!-- for news ticker css file -->
+    <link href="{{ url }}assets/css/li-scroller.css" rel="stylesheet">
+    <!-- slick slider css file -->
+    <link href="{{ url }}assets/css/slick.css" rel="stylesheet">
+    <!-- for fancybox slider -->
+    <link href="{{ url }}assets/css/jquery.fancybox.css" rel="stylesheet">
+    <!-- website theme file -->
+    <!-- <link href="{{ url }}assets/css/theme-red.css" rel="stylesheet"> -->
+
+    <link href="{{ url }}assets/css/theme.css" rel="stylesheet">
+    <!-- main site css file -->
+    <link href="{{ url }}assets/css/style.css" rel="stylesheet">
+
+</head>
+<body>
+<!-- =========================
+  //////////////This Theme Design and Developed //////////////////////
+  //////////// by www.wpfreeware.com======================-->
+
+<!-- Preloader -->
+<div id="preloader">
+    <div id="status">&nbsp;</div>
+</div>
+<!-- End Preloader -->
+
+<a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
+
+<div class="container">
+    {{ include("layouts/header.html") }}
+
+    {{ include("layouts/nav.html") }}
+
+    {{ include("layouts/sub_nav.html") }}
+
+    {#{{ include("layouts/slider.html") }}#}
+
+    <!-- ==================start content body section=============== -->
+    <section id="contentSection">
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-8">
+                <div class="left_content">
+                        {{ include(page) }}
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 col-sm-4">
+                <aside class="right_content">
+                    {% if(user['level'] == 2) %}
+                        {{ include("layouts/admin_right_sidebar.html") }}
+                    {% endif %}
+                        {{ include("layouts/right_sidebar.html") }}
+                </aside>
+            </div>
+        </div>
+    </section>
+    <!-- ==================End content body section=============== -->
+
+    {{ include("layouts/footer.html") }}
+</div> <!-- /.container -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="{{ url }}assets/js/bootstrap.min.js"></script>
+{% for js in assets['js'] %}
+    <script src="{{ url }}assets/js/{{ js }}"></script>
+{% endfor %}
+<!-- For content animatin  -->
+<script src="{{ url }}assets/js/wow.min.js"></script>
+<!-- slick slider js file -->
+<script src="{{ url }}assets/js/slick.min.js"></script>
+<!-- news ticker jquery file -->
+<script src="{{ url }}assets/js/jquery.li-scroller.1.0.js"></script>
+<!-- for news slider -->
+<script src="{{ url }}assets/js/jquery.newsTicker.min.js"></script>
+<!-- for fancybox slider -->
+<script src="{{ url }}assets/js/jquery.fancybox.pack.js"></script>
+<!-- custom js file include -->
+<script src="{{ url }}assets/js/custom.js"></script>
+
+</body>
+</html>

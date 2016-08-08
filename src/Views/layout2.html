@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ title | default("Love Simple Framework") }}</title>
+
+    <link rel="stylesheet" href="{{ url }}assets/css/app.css">
+    {% for css in assets['css'] %}
+        <link rel="stylesheet" href="{{ url }}assets/css/{{ css }}">
+    {% endfor %}
+    <!-- Bootstrap -->
+    <!-- for fontawesome icon css file -->
+    {#<link href="{{url}}assets/css/font-awesome.min.css" rel="stylesheet">#}
+    <!-- for content animate css file -->
+    <link rel="stylesheet" href="{{ url }}assets/css/animate.css">
+    <!-- google fonts  -->
+    <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Varela' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <!-- for news ticker css file -->
+    <link href="{{ url }}assets/css/li-scroller.css" rel="stylesheet">
+    <!-- slick slider css file -->
+    <link href="{{ url }}assets/css/slick.css" rel="stylesheet">
+    <!-- for fancybox slider -->
+    <link href="{{ url }}assets/css/jquery.fancybox.css" rel="stylesheet">
+    <!-- website theme file -->
+    <!-- <link href="{{ url }}assets/css/theme-red.css" rel="stylesheet"> -->
+
+    <link href="{{ url }}assets/css/theme.css" rel="stylesheet">
+    <!-- main site css file -->
+    <link href="{{ url }}assets/css/style.css" rel="stylesheet">
+    
+</head>
+<body>
+<!-- =========================
+  //////////////This Theme Design and Developed //////////////////////
+  //////////// by www.wpfreeware.com======================-->
+
+<!-- Preloader -->
+<div id="preloader">
+    <div id="status">&nbsp;</div>
+</div>
+<!-- End Preloader -->
+
+<a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
+
+<div class="container">
+    {{ include("layouts/header.html") }}
+
+    {{ include("layouts/nav.html") }}
+
+    {{ include("layouts/sub_nav.html") }}
+
+    {{ include("layouts/slider.html") }}
+
+    <!-- ==================start content body section=============== -->
+    <section id="contentSection">
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-8">
+                <div class="left_content">
+                    <div class="single_post_content">
+                        <h2><span>Business</span></h2>
+                        <div class="single_post_content_left">
+                            <ul class="business_catgnav  wow fadeInDown">
+                                <li>
+                                    <figure class="bsbig_fig">
+                                        <a href="single_page.html" class="featured_img">
+                                            <img alt="img" src="{{url}}assets/img/featured_img1.jpg">
+                                            <span class="overlay"></span>
+                                        </a>
+                                        <figcaption>
+                                            <a href="single_page.html">Proin rhoncus consequat nisl eu ornare mauris</a>
+                                        </figcaption>
+                                        <p>Nunc tincidunt, elit non cursus euismod, lacus augue ornare metus, egestas
+                                            imperdiet nulla nisl quis mauris. Suspendisse a phare...</p>
+                                    </figure>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="single_post_content_right">
+                            <ul class="spost_nav">
+                                <li>
+                                    <div class="media wow fadeInDown">
+                                        <a href="single_page.html" class="media-left">
+                                            <img alt="img" src="{{url}}assets/img/post_img1.jpg">
+                                        </a>
+                                        <div class="media-body">
+                                            <a href="single_page.html" class="catg_title"> Aliquam malesuada diam eget
+                                                turpis varius 1</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="media wow fadeInDown">
+                                        <a href="single_page.html" class="media-left">
+                                            <img alt="img" src="{{url}}assets/img/post_img2.jpg">
+                                        </a>
+                                        <div class="media-body">
+                                            <a href="single_page.html" class="catg_title"> Aliquam malesuada diam eget
+                                                turpis varius 2</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="media wow fadeInDown">
+                                        <a href="single_page.html" class="media-left">
+                                            <img alt="img" src="{{url}}assets/img/post_img1.jpg">
+                                        </a>
+                                        <div class="media-body">
+                                            <a href="single_page.html" class="catg_title"> Aliquam malesuada diam eget
+                                                turpis varius 3</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="media wow fadeInDown">
+                                        <a href="single_page.html" class="media-left">
+                                            <img alt="img" src="{{url}}assets/img/post_img2.jpg">
+                                        </a>
+                                        <div class="media-body">
+                                            <a href="single_page.html" class="catg_title"> Aliquam malesuada diam eget
+                                                turpis varius 4</a>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- start 2 style category design -->
+                    <div class="fashion_technology_area">
+                        <div class="fashion">
+                            <div class="single_post_content">
+                                <h2><span>Fashion</span></h2>
+                                <ul class="business_catgnav wow fadeInDown">
+                                    <li>
+                                        <figure class="bsbig_fig">
+                                            <a href="single_page.html" class="featured_img">
+                                                <img alt="img" src="{{url}}assets/img/featured_img2.jpg">
+                                                <span class="overlay"></span>
+                                            </a>
+                                            <figcaption>
+                                                <a href="single_page.html">Proin rhoncus consequat nisl eu ornare
+                                                    mauris</a>
+                                            </figcaption>
+                                            <p>Nunc tincidunt, elit non cursus euismod, lacus augue ornare metus,
+                                                egestas imperdiet nulla nisl quis mauris. Suspendisse a phare...</p>
+                                        </figure>
+                                    </li>
+                                </ul>
+                                <ul class="spost_nav">
+                                    <li>
+                                        <div class="media wow fadeInDown">
+                                            <a href="single_page.html" class="media-left">
+                                                <img alt="img" src="{{url}}assets/img/post_img1.jpg">
+                                            </a>
+                                            <div class="media-body">
+                                                <a href="single_page.html" class="catg_title"> Aliquam malesuada diam
+                                                    eget turpis varius 1</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="media wow fadeInDown">
+                                            <a href="single_page.html" class="media-left">
+                                                <img alt="img" src="{{url}}assets/img/post_img2.jpg">
+                                            </a>
+                                            <div class="media-body">
+                                                <a href="single_page.html" class="catg_title"> Aliquam malesuada diam
+                                                    eget turpis varius 2</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="media wow fadeInDown">
+                                            <a href="single_page.html" class="media-left">
+                                                <img alt="img" src="{{url}}assets/img/post_img1.jpg">
+                                            </a>
+                                            <div class="media-body">
+                                                <a href="single_page.html" class="catg_title"> Aliquam malesuada diam
+                                                    eget turpis varius 3</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="media wow fadeInDown">
+                                            <a href="single_page.html" class="media-left">
+                                                <img alt="img" src="{{url}}assets/img/post_img2.jpg">
+                                            </a>
+                                            <div class="media-body">
+                                                <a href="single_page.html" class="catg_title"> Aliquam malesuada diam
+                                                    eget turpis varius 4</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="technology">
+                            <div class="single_post_content">
+                                <h2><span>Technology</span></h2>
+                                <ul class="business_catgnav">
+                                    <li>
+                                        <figure class="bsbig_fig wow fadeInDown">
+                                            <a href="single_page.html" class="featured_img">
+                                                <img alt="img" src="{{url}}assets/img/featured_img3.jpg">
+                                                <span class="overlay"></span>
+                                            </a>
+                                            <figcaption>
+                                                <a href="single_page.html">Proin rhoncus consequat nisl eu ornare
+                                                    mauris</a>
+                                            </figcaption>
+                                            <p>Nunc tincidunt, elit non cursus euismod, lacus augue ornare metus,
+                                                egestas imperdiet nulla nisl quis mauris. Suspendisse a phare...</p>
+                                        </figure>
+                                    </li>
+                                </ul>
+                                <ul class="spost_nav">
+                                    <li>
+                                        <div class="media wow fadeInDown">
+                                            <a href="single_page.html" class="media-left">
+                                                <img alt="img" src="{{url}}assets/img/post_img1.jpg">
+                                            </a>
+                                            <div class="media-body">
+                                                <a href="single_page.html" class="catg_title"> Aliquam malesuada diam
+                                                    eget turpis varius 1</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="media wow fadeInDown">
+                                            <a href="single_page.html" class="media-left">
+                                                <img alt="img" src="{{url}}assets/img/post_img2.jpg">
+                                            </a>
+                                            <div class="media-body">
+                                                <a href="single_page.html" class="catg_title"> Aliquam malesuada diam
+                                                    eget turpis varius 2</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="media wow fadeInDown">
+                                            <a href="single_page.html" class="media-left">
+                                                <img alt="img" src="{{url}}assets/img/post_img1.jpg">
+                                            </a>
+                                            <div class="media-body">
+                                                <a href="single_page.html" class="catg_title"> Aliquam malesuada diam
+                                                    eget turpis varius 3</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="media wow fadeInDown">
+                                            <a href="single_page.html" class="media-left">
+                                                <img alt="img" src="{{url}}assets/img/post_img2.jpg">
+                                            </a>
+                                            <div class="media-body">
+                                                <a href="single_page.html" class="catg_title"> Aliquam malesuada diam
+                                                    eget turpis varius 4</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End 2 style category design -->
+                    <!-- start photography stye design -->
+                    <div class="single_post_content">
+                        <h2><span>Photography</span></h2>
+                        <ul class="photograph_nav  wow fadeInDown">
+                            <li>
+                                <div class="photo_grid">
+                                    <figure class="effect-layla">
+                                        <a class="fancybox-buttons" data-fancybox-group="button"
+                                           href="img/photograph_img2.jpg" title="Photography Ttile 1">
+                                            <img src="{{url}}assets/img/photograph_img2.jpg" alt="img06"/></a>
+                                    </figure>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="photo_grid">
+                                    <figure class="effect-layla">
+                                        <a class="fancybox-buttons" data-fancybox-group="button"
+                                           href="img/photograph_img3.jpg" title="Photography Ttile 2">
+                                            <img src="{{url}}assets/img/photograph_img3.jpg" alt="img06"/>
+                                        </a>
+                                    </figure>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="photo_grid">
+                                    <figure class="effect-layla">
+                                        <a class="fancybox-buttons" data-fancybox-group="button"
+                                           href="img/photograph_img4.jpg" title="Photography Ttile 3">
+                                            <img src="{{url}}assets/img/photograph_img4.jpg" alt="img06"/>
+                                        </a>
+                                    </figure>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="photo_grid">
+                                    <figure class="effect-layla">
+                                        <a class="fancybox-buttons" data-fancybox-group="button"
+                                           href="img/photograph_img4.jpg" title="Photography Ttile 4">
+                                            <img src="{{url}}assets/img/photograph_img4.jpg" alt="img06"/>
+                                        </a>
+                                    </figure>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="photo_grid">
+                                    <figure class="effect-layla">
+                                        <a class="fancybox-buttons" data-fancybox-group="button"
+                                           href="img/photograph_img2.jpg" title="Photography Ttile 5">
+                                            <img src="{{url}}assets/img/photograph_img2.jpg" alt="img06"/>
+                                        </a>
+                                    </figure>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="photo_grid">
+                                    <figure class="effect-layla">
+                                        <a class="fancybox-buttons" data-fancybox-group="button"
+                                           href="img/photograph_img3.jpg" title="Photography Ttile 6">
+                                            <img src="{{url}}assets/img/photograph_img3.jpg" alt="img06"/>
+                                        </a>
+                                    </figure>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- End photography stye design -->
+                    <!-- start games category design -->
+                    <div class="single_post_content">
+                        <h2><span>Games</span></h2>
+                        <div class="single_post_content_left">
+                            <ul class="business_catgnav">
+                                <li>
+                                    <figure class="bsbig_fig  wow fadeInDown">
+                                        <a class="featured_img" href="single_page.html">
+                                            <img src="{{url}}assets/img/featured_img1.jpg" alt="img">
+                                            <span class="overlay"></span>
+                                        </a>
+                                        <figcaption>
+                                            <a href="single_page.html">Proin rhoncus consequat nisl eu ornare mauris</a>
+                                        </figcaption>
+                                        <p>Nunc tincidunt, elit non cursus euismod, lacus augue ornare metus, egestas
+                                            imperdiet nulla nisl quis mauris. Suspendisse a phare...</p>
+                                    </figure>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="single_post_content_right">
+                            <ul class="spost_nav">
+                                <li>
+                                    <div class="media wow fadeInDown">
+                                        <a href="single_page.html" class="media-left">
+                                            <img alt="img" src="{{url}}assets/img/post_img1.jpg">
+                                        </a>
+                                        <div class="media-body">
+                                            <a href="single_page.html" class="catg_title"> Aliquam malesuada diam eget
+                                                turpis varius 1</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="media wow fadeInDown">
+                                        <a href="single_page.html" class="media-left">
+                                            <img alt="img" src="{{url}}assets/img/post_img2.jpg">
+                                        </a>
+                                        <div class="media-body">
+                                            <a href="single_page.html" class="catg_title"> Aliquam malesuada diam eget
+                                                turpis varius 2</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="media wow fadeInDown">
+                                        <a href="single_page.html" class="media-left">
+                                            <img alt="img" src="{{url}}assets/img/post_img1.jpg">
+                                        </a>
+                                        <div class="media-body">
+                                            <a href="single_page.html" class="catg_title"> Aliquam malesuada diam eget
+                                                turpis varius 3</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="media wow fadeInDown">
+                                        <a href="single_page.html" class="media-left">
+                                            <img alt="img" src="{{url}}assets/img/post_img2.jpg">
+                                        </a>
+                                        <div class="media-body">
+                                            <a href="single_page.html" class="catg_title"> Aliquam malesuada diam eget
+                                                turpis varius 4</a>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- End games category design -->
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4">
+                {{ include("layouts/right_sidebar.html") }}
+            </div>
+        </div>
+    </section>
+    <!-- ==================End content body section=============== -->
+
+    {{ include("layouts/footer.html") }}
+</div> <!-- /.container -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="{{ url }}assets/js/bootstrap.min.js"></script>
+{% for js in assets['js'] %}
+    <script src="{{ url }}assets/js/{{ js }}"></script>
+{% endfor %}
+<!-- For content animatin  -->
+<script src="{{ url }}assets/js/wow.min.js"></script>
+<!-- slick slider js file -->
+<script src="{{ url }}assets/js/slick.min.js"></script>
+<!-- news ticker jquery file -->
+<script src="{{ url }}assets/js/jquery.li-scroller.1.0.js"></script>
+<!-- for news slider -->
+<script src="{{ url }}assets/js/jquery.newsTicker.min.js"></script>
+<!-- for fancybox slider -->
+<script src="{{ url }}assets/js/jquery.fancybox.pack.js"></script>
+<!-- custom js file include -->
+<script src="{{ url }}assets/js/custom.js"></script>
+
+</body>
+</html>

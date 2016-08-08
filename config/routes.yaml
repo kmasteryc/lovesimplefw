@@ -1,10 +1,17 @@
 default:
     page: "home@welcome"
 GET:
-    "home/index/{name}":
-        page: "HomeController@getIndex"
+    "cate/index/":
+        page: "CateController@index"
+    "cate/{id}/edit":
+        page: "CateController@edit"
+    "cate/create/":
+        page: "CateController@create"
+    "cate/{id}/delete":
+        page: "CateController@delete"
 POST:
-    "home/index/":
-        page: "HomeController@postIndex"
-PATCH:
-DELETE:
+    "cate/store/":
+        page: "CateController@store"
+PUT:
+    "cate/{id}":
+        page: "CateController@update"

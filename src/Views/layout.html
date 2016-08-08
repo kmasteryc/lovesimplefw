@@ -10,13 +10,15 @@
 </head>
 <body>
 
-    {{ include("layouts/nav.html") }}
+{{ include("layouts/nav.html") }}
 
+<div class="container">
     {{ include(page) }}
+</div>
 
-    {% for js in assets['js'] %}
-        <script src="{{ url }}assets/js/{{ js }}"></script>
-    {% endfor %}
+{% for js in assets['js'] %}
+    <script src="{{ url }}assets/js/{{ js }}"></script>
+{% endfor %}
 
 </body>
 </html>

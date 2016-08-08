@@ -1,10 +1,10 @@
 parameters:
     env: 'DEV'
-    url: 'http://lovesimplefw.app/'
+    url: 'http://dantri.app/'
     db_config:
         driver   : 'mysql'
         host     : 'localhost'
-        database  : 'larproject1'
+        database  : 'dantri'
         username  : 'homestead'
         password  : 'secret'
         charset   : 'utf8'

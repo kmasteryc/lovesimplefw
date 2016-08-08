@@ -1,0 +1,57 @@
+[
+  {
+    "id": 1,
+    "cate_title": "Van hoa",
+    "cate_parent": 0
+  },
+  {
+    "id": 2,
+    "cate_title": "Giai tri",
+    "cate_parent": 0
+  },
+  {
+    "id": 3,
+    "cate_title": "Xa hoi",
+    "cate_parent": 0
+  },
+  {
+    "id": 4,
+    "cate_title": "Van hoa 1",
+    "cate_parent": 1
+  },
+  {
+    "id": 5,
+    "cate_title": "Xa hoi 1",
+    "cate_parent": 3
+  },
+  {
+    "id": 6,
+    "cate_title": "Van hoa 2",
+    "cate_parent": 1
+  },
+  {
+    "id": 7,
+    "cate_title": "Van hoa 3",
+    "cate_parent": 1
+  },
+  {
+    "id": 55,
+    "cate_title": "Xa hoi 3.2",
+    "cate_parent": 9
+  },
+  {
+    "id": 8,
+    "cate_title": "Giai tri 1",
+    "cate_parent": 2
+  },
+  {
+    "id": 9,
+    "cate_title": "Xa hoi 3",
+    "cate_parent": 3
+  },
+  {
+    "id": 10,
+    "cate_title": "Xa hoi 3.1",
+    "cate_parent": 9
+  }
+]

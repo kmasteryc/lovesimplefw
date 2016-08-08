@@ -11,10 +11,19 @@ function asset($file){
     return baseDir().'assets/'.$file;
 };
 
-function baseDir(){
+/**
+ * @param $url
+ * @return string: return base absolute URL
+ */
+function baseDir($url){
     $protocol = strtolower(strstr($_SERVER['SERVER_PROTOCOL'],'/',true)).'://';
-    return $protocol.$_SERVER['HTTP_HOST'].DIRECTORY_SEPARATOR;
+    return $protocol.$_SERVER['HTTP_HOST'].DIRECTORY_SEPARATOR.$url;
 }
+
+/**
+ * @param string $dir
+ * @return string: return real absolute path
+ */
 function appDir($dir = ''){
     $app_dir = realpath(__DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR);
 //    dd($app_dir);
@@ -24,15 +33,29 @@ function appDir($dir = ''){
     return $app_dir;
 }
 
+/**
+ * @param $var
+ * @return void: Echo varible without stop executing script
+ */
 function ddd($var){
     echo "<pre>";
     print_r($var);
     echo "</pre>";
 }
+
+/**
+ * @param $link: Link yaml file
+ * @return mixed: Return decoded yaml file
+ */
 function yaml_decode($link){
     $yaml = file_get_contents($link);
     return \Symfony\Component\Yaml\Yaml::parse($yaml);
 }
+
+/**
+ * @param string $key
+ * @return mixed: Get specific config from config file
+ */
 function config($key=''){
     if ($key == ''){
         return yaml_decode(__DIR__."/../config/parameters.yaml")['parameters'];
