@@ -9,6 +9,15 @@ GET:
         page: "CateController@create"
     "cate/{id}/delete":
         page: "CateController@delete"
+
+    "article/index/":
+        page: "ArticleController@index"
+    "article/{id}/edit":
+        page: "ArticleController@edit"
+    "article/create/":
+        page: "ArticleController@create"
+    "article/{id}/delete":
+        page: "ArticleController@delete"
 POST:
     "cate/store/":
         page: "CateController@store"
