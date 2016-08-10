@@ -18,5 +18,10 @@ class Model extends BaseModel{
 
         self::$db = $this->container('capsule');
     }
+//    public function fromSlug($slug)
+//    {
+//        echo $slug;
+////        return $this->where(['cate_slug' => $slug])->get();
+//    }
 }
 

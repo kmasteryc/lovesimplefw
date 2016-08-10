@@ -9,6 +9,8 @@ GET:
         page: "CateController@create"
     "cate/{id}/delete":
         page: "CateController@delete"
+    "chuyen-muc/{cate_slug}":
+        page: "CateController@show"
 
     "article/index/":
         page: "ArticleController@index"
@@ -18,9 +20,15 @@ GET:
         page: "ArticleController@create"
     "article/{id}/delete":
         page: "ArticleController@delete"
+    "chuyen-muc/{cate_slug}/{article_slug}":
+        page: "ArticleController@show"
 POST:
     "cate/store/":
         page: "CateController@store"
+    "article/store/":
+            page: "ArticleController@store"
 PUT:
     "cate/{id}":
         page: "CateController@update"
+    "article/{id}":
+        page: "ArticleController@update"

@@ -7,7 +7,8 @@
     <title>{{ title | default("Love Simple Framework") }}</title>
 
     <link rel="stylesheet" href="{{ url }}assets/css/app.css">
-    {#<link rel="stylesheet" href="{{ url }}assets/css/bootstrap.min.css">#}
+    <link rel="stylesheet" href="{{ url }}assets/css/jquery-ui.min.css">
+
     {% for css in assets['css'] %}
         <link rel="stylesheet" href="{{ url }}assets/css/{{ css }}">
     {% endfor %}
@@ -17,9 +18,7 @@
     <!-- for content animate css file -->
     <link rel="stylesheet" href="{{ url }}assets/css/animate.css">
     <!-- google fonts  -->
-    <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Varela' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
     <!-- for news ticker css file -->
     <link href="{{ url }}assets/css/li-scroller.css" rel="stylesheet">
     <!-- slick slider css file -->
@@ -80,8 +79,12 @@
     {{ include("layouts/footer.html") }}
 </div> <!-- /.container -->
 
+<script>
+    var base_url = '{{ url|raw }}';
+</script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="{{ url }}assets/js/bootstrap.min.js"></script>
+<script src="{{ url }}assets/js/jquery-ui.min.js"></script>
 {% for js in assets['js'] %}
     <script src="{{ url }}assets/js/{{ js }}"></script>
 {% endfor %}

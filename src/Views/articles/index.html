@@ -1,1 +1,40 @@
-WTF
+<div class="single_page">
+    <ol class="breadcrumb">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#">Admin panel</a></li>
+        <li class="active">Article</li>
+    </ol>
+    <h1>Manage articles</h1>
+
+    <div class="single_page_content">
+        <div class="table-responsive">
+            <table class="table table-hover table-bordered">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Action</th>
+                    <th>Article title</th>
+                    <th>Category</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for article in articles %}
+                    <tr>
+                        <td>{{ article.id }}</td>
+                        <td><a href="/article/{{ article.id }}/edit">Edit</a> - <a href="/article/{{ article.id }}/delete">Delete</a></td>
+                        <td>
+                            <a href="{{ "#{url}chuyen-muc/#{article.cate.cate_slug}/#{article.article_slug}" }}">
+                                {{ article.article_title }}
+                            </a>
+                        </td>
+                        <td>{{ article.cate.cate_title }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <a href="/article/create" class="center-block">
+            <button class="btn btn-black">Create new article</button>
+        </a>
+    </div>
+</div>

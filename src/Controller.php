@@ -9,17 +9,25 @@ namespace LoveSimple;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\Session;
 use LoveSimple\Libs\Menu;
 
 class Controller{
     use DIContainer;
     protected $twig;
     protected $requestVars;
-    
+    protected $request;
+    protected $session;
+
     public function __construct()
     {
         $this->twig = $this->container('twig');
-        $this->requestVars =Request::createFromGlobals()->request;
+
+        $this->request = Request::createFromGlobals();
+        $this->requestVars = $this->request->request;
+
+        $this->session = new Session;
+        $this->session->start();
     }
     public function view($page, $data = []){
 

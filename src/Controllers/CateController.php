@@ -77,4 +77,14 @@ class CateController extends Controller
         $cate -> delete();
         return $this->redirect(baseDir('cate/index'));
     }
+
+    public function show($cate_slug){
+        $cates = Cate::whereCateSlug($cate_slug)
+            ->first()
+            ->getMeAndMyChilds()
+            ->with('articles')
+            ->get();
+        $breadcrumb = showBreadCrumb(Cate::whereCateSlug($cate_slug)->first());
+        return $this->view('cates.show', compact("cates","breadcrumb"));
+    }
 }

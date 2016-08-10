@@ -1,9 +1,12 @@
- 
- <!-- =========================
-        //////////////This Theme Design and Developed //////////////////////
-        //////////// by www.wpfreeware.com======================-->
+jQuery(document).ready(function(){
+    console.log(base_url);
+     // Initialize TinyMCE
+     if (jQuery("#ckeditor").length > 0) {
+         CKEDITOR.replace( 'ckeditor', {
+             filebrowserBrowseUrl : base_url+'assets/js/elfinder/elfinder.html'
+         });
+     }
 
- jQuery(document).ready(function(){
    // for hover dropdown menu
   $('ul.nav li.dropdown').hover(function() {
       $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(200);
@@ -55,8 +58,7 @@
   });
 
   $('.tootlip').tooltip(); 
-  $("ul#ticker01").liScroll(); 
-
+  $("ul#ticker01").liScroll();
 });
 
  wow = new WOW(

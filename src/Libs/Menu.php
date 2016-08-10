@@ -6,6 +6,9 @@
  * Time: 21:52
  */
 namespace LoveSimple\Libs;
+use Illuminate\Database\Eloquent\Collection;
+use LoveSimple\Models\Cate;
+
 class Menu
 {
     public $parent;
@@ -57,6 +60,30 @@ class Menu
                         }
                     }
                 }
+            }
+        }
+        return $this->html;
+    }
+
+    public function displaySelectedMenuNoHide(Collection $cates, Cate $selected, $parent = 0, $divider = "___")
+    {
+        foreach ($cates as $cate) {
+            if ($cate->cate_parent == $parent) {
+
+                    $this->html .= "<option value='$cate->id' " . ($cate->id == $selected->id ? 'selected' : '') . ">";
+                    $this->html .= $divider . $cate->cate_title;
+                    $this->html .= "</option>";
+
+                    $this->parent = $cate->id;
+                    foreach ($cates as $cate_sub) {
+                        if ($cate_sub->cate_parent == $this->parent) {
+
+                            $divider .= $divider;
+                            self::displaySelectedMenuNoHide($cates, $selected, $this->parent, $divider);
+                            $divider = "___";
+
+                        }
+                    }
             }
         }
         return $this->html;
