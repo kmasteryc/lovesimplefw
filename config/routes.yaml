@@ -25,6 +25,8 @@ GET:
 
     "import/create":
         page: "ImportController@create"
+    "import/downloadimg":
+        page: "ImportController@downloadImg"
 POST:
     "cate/store/":
         page: "CateController@store"

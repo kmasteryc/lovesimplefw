@@ -18,8 +18,9 @@ class ArticleController extends Controller
 {
     public function index()
     {
+        dd(Article::with('cate')->paginate(5));
         return $this->view('articles.index', [
-            'articles' => Article::with('cate')->get()
+            'articles' => Article::with('cate')->paginate(5)
         ]);
     }
 
@@ -61,6 +62,7 @@ class ArticleController extends Controller
         $cates = Cate::all();
         $cates_html = (new Menu)->displaySelectedMenuNoHide($cates, $article->cate);
         return $this->view('articles.edit', [
+            'js' => ['ckeditor/ckeditor.js'],
             'article' => $article,
             'cates' => $cates_html
         ]);

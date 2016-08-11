@@ -18,7 +18,7 @@ function asset($file)
  * @param $url
  * @return string: return base absolute URL
  */
-function baseDir($url)
+function baseDir($url = '')
 {
     $protocol = strtolower(strstr($_SERVER['SERVER_PROTOCOL'], '/', true)) . '://';
     return $protocol . $_SERVER['HTTP_HOST'] . DIRECTORY_SEPARATOR . $url;
@@ -108,4 +108,8 @@ function showBreadCrumb(Cate $current_cate)
 
     $html .= '</ol>';
     return $html;
+}
+
+function randStr(){
+    return substr(md5(rand(0,99999)),0,5);
 }

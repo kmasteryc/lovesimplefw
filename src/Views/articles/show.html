@@ -1,11 +1,15 @@
 <div class="single_page">
     {{ breadcrumb|raw }}
     <h1>{{ article.article_title }}</h1>
+
+    {{ include('articles/parts/tool_article.html') }}
+
     <div class="post_commentbox">
         <span><i class="fa fa-calendar"></i>{{ article.created_at }}</span>
         <a href="#"><i class="fa fa-tags"></i>Tag</a>
         {#todo: Tag module#}
     </div>
+
     <div class="single_page_content">
         {{ article.article_content|raw }}
     </div>
