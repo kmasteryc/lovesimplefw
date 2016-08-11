@@ -72,20 +72,40 @@ function config($key = '')
     }
 }
 
+function pre($var)
+{
+    echo "<pre>";
+    print_r($var);
+    echo "</pre>";
+}
+
+function console_log($var)
+{
+    echo "<script>";
+    echo "console.log('$var')";
+    echo "</script>";
+}
+
+;
+
 function showBreadCrumb(Cate $current_cate)
 {
-//    $html = '<div class="row">';
     $html = '<ol class="breadcrumb">';
     $html .= '<li><a href="index.html">Trang chủ</a></li>';
-    if ($current_cate->cate_parent != 0){
-        $parent_cate = Cate::find($current_cate->cate_parent)->first();
-        $html .= "<li ><a href = '".baseDir("chuyen-muc/$parent_cate->cate_slug")."' > $parent_cate->cate_title</a ></li >";
+    if ($current_cate->cate_parent != 0) {
+        $parent_cate = Cate::find($current_cate->cate_parent);
+        $html .= "<li >
+                    <a href = '" . baseDir("chuyen-muc/$parent_cate->cate_slug") . "' > 
+                        $parent_cate->cate_title
+                    </a >
+                </li >";
     }
-    $html .= "<li class='active'><a href = '".baseDir("chuyen-muc/$current_cate->cate_slug")."' > $current_cate->cate_title</a ></li >";
+    $html .= "<li class='active'>
+                    <a href = '" . baseDir("chuyen-muc/$current_cate->cate_slug") . "' > 
+                    $current_cate->cate_title
+                    </a >
+                </li >";
 
-//    <li ><a href = "#" > Technology</a ></li >
-//        <li class="active"> Mobile</li >
     $html .= '</ol>';
-//    $html .= '</div>';
     return $html;
 }

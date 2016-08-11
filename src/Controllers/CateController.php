@@ -49,10 +49,9 @@ class CateController extends Controller
         $cate->cate_parent = $this->requestVars->get('cate_parent');
 
         $cateValidator = v::attribute('cate_title', v::stringType()->length(5, null)->alpha()->space())
-                        ->attribute('cate_parent', v::intType());
+            ->attribute('cate_parent', v::intType());
 
-        if ($cateValidator === false)
-        {
+        if ($cateValidator === false) {
             echo "Something wrong here!";
         }
 
@@ -74,17 +73,20 @@ class CateController extends Controller
     public function delete($id)
     {
         $cate = Cate::find($id);
-        $cate -> delete();
+        $cate->delete();
         return $this->redirect(baseDir('cate/index'));
     }
 
-    public function show($cate_slug){
-        $cates = Cate::whereCateSlug($cate_slug)
-            ->first()
+    public function show($cate_slug)
+    {
+        $cate = Cate::whereCateSlug($cate_slug)->first();
+        $cates = $cate
             ->getMeAndMyChilds()
             ->with('articles')
             ->get();
-        $breadcrumb = showBreadCrumb(Cate::whereCateSlug($cate_slug)->first());
-        return $this->view('cates.show', compact("cates","breadcrumb"));
+        $breadcrumb = showBreadCrumb($cate);
+        $title = $cate->cate_title;
+        
+        return $this->view('cates.show', compact("cates", "breadcrumb", "title"));
     }
 }

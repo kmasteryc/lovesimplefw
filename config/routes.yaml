@@ -22,11 +22,16 @@ GET:
         page: "ArticleController@delete"
     "chuyen-muc/{cate_slug}/{article_slug}":
         page: "ArticleController@show"
+
+    "import/create":
+        page: "ImportController@create"
 POST:
     "cate/store/":
         page: "CateController@store"
     "article/store/":
             page: "ArticleController@store"
+    "import/store":
+            page: "ImportController@store"
 PUT:
     "cate/{id}":
         page: "CateController@update"

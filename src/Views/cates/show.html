@@ -7,7 +7,7 @@
                 <li>
                     <figure class="bsbig_fig">
                         <a href="{{ "#{url}chuyen-muc/#{cate.cate_slug}/#{cate.articles[0].article_slug}" }}" class="featured_img">
-                            <img alt="img" src="img/featured_img1.jpg">
+                            <img alt="img" src="{{ cate.articles[0].article_img }}">
                             <span class="overlay"></span>
                         </a>
                         <figcaption>
@@ -31,7 +31,7 @@
                             <div class="media wow fadeInDown">
                                 <a href="{{ "#{url}chuyen-muc/#{cate.cate_slug}/#{article.article_slug}" }}"
                                    class="media-left">
-                                    <img alt="img" src="img/post_img1.jpg">
+                                    <img alt="img" src="{{ article.article_img }}">
                                 </a>
                                 <div class="media-body">
                                     <a href="{{ "#{url}chuyen-muc/#{cate.cate_slug}/#{article.article_slug}" }}"

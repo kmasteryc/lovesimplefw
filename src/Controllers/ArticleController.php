@@ -19,7 +19,7 @@ class ArticleController extends Controller
     public function index()
     {
         return $this->view('articles.index', [
-            'articles' => Article::all()
+            'articles' => Article::with('cate')->get()
         ]);
     }
 

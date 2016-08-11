@@ -6,6 +6,8 @@
  * Time: 22:54
  */
 namespace LoveSimple;
+use LoveSimple\Models\Cate;
+use LoveSimple\Models\Article;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -46,11 +48,15 @@ class Controller{
         }
 
         $page = str_replace('.',DIRECTORY_SEPARATOR,$page).'.html';
+
         $data['data'] = $data;
         $data['page'] = $page;
         $data['user'] = ['name'=>'admin', 'level'=>2];
         $data['url'] = config('url');
         $data['menus'] = (new Menu)->displayNavMenu(Models\Cate::get());
+        $data['all_cates'] = Cate::all();
+        $data['popular_articles'] = Article::orderBy('article_view','DESC')->with('cate')->take(5)->get();
+        $data['new_articles'] = Article::orderBy('created_at','DESC')->with('cate')->take(10)->get();
 //        echo($data['menus']);
 //        exit();
         $content = $this->twig->render('layout3.html', $data);
