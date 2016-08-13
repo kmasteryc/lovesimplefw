@@ -1,0 +1,51 @@
+{{ breadcrumb|raw }}
+{% for cate in cates %}
+    <div class="single_post_content">
+        <h2><span>{{ cate.cate_title }}</span></h2>
+        <div class="single_post_content_left">
+            <ul class="business_catgnav  wow fadeInDown">
+                <li>
+                    <figure class="bsbig_fig">
+                        <a href="{{ "#{url}chuyen-muc/#{cate.cate_slug}/#{cate.articles[0].article_slug}" }}" class="featured_img">
+                            <img alt="img" src="{{ cate.articles[0].article_img }}">
+                            <span class="overlay"></span>
+                        </a>
+                        <figcaption>
+                            <a href="{{ "#{url}chuyen-muc/#{cate.cate_slug}/#{cate.articles[0].article_slug}" }}">
+                                {{ cate.articles[0].article_title }}
+                            </a>
+                        </figcaption>
+                        <p>
+                            {{ cate.articles[0].article_info }}
+                        </p>
+                    </figure>
+                </li>
+            </ul>
+        </div>
+        <div class="single_post_content_right">
+            <ul class="spost_nav">
+                {% set i = 1 %}
+                {% for article in cate.articles %}
+                    {% if i > 1 %}
+                        <li>
+                            <div class="media wow fadeInDown">
+                                <a href="{{ "#{url}chuyen-muc/#{cate.cate_slug}/#{article.article_slug}" }}"
+                                   class="media-left">
+                                    <img alt="img" src="{{ article.article_img }}">
+                                </a>
+                                <div class="media-body">
+                                    <a href="{{ "#{url}chuyen-muc/#{cate.cate_slug}/#{article.article_slug}" }}"
+                                       class="catg_title">
+                                        {{ article.article_title }}
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                    {% endif %}
+                    {% set i = i+1 %}
+                {% endfor %}
+
+            </ul>
+        </div>
+    </div>
+{% endfor %}

@@ -26,7 +26,8 @@
             <div class="form-group">
                 <label for="article_title" class="col-md-2">Article content</label>
                 <div class="col-sm-10">
-                    <textarea class="form-control" name="article_content" id="ckeditor" rows="30">{{ article.article_content }}</textarea>
+                    <textarea class="form-control" name="article_content" id="ckeditor"
+                              rows="30">{{ article.article_content }}</textarea>
                 </div>
             </div>
 
@@ -39,12 +40,13 @@
                 </div>
             </div>
 
-            {{ dump(article.tags.pluck('tag_title').implode(',')) }}
-
             <div class="form-group">
                 <label for="article_title" class="col-md-2">Tags (seperate by comma ,)</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="tags" value="">
+                    <input type="text"
+                           class="form-control"
+                           name="tags"
+                           value="{{ article.tags.pluck('tag_title').implode(',') }}">
                 </div>
             </div>
 

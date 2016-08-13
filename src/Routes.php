@@ -12,20 +12,23 @@ use Symfony\Component\HttpFoundation\Response;
 
 class Routes
 {
-    use DIContainer;
     protected $routes;
     protected $path;
     protected $method;
-    private $_request;
-    protected $controller = '';
+    protected $request;
+    protected $controller;
 
     public function __construct()
     {
-        $this->getRoutesConfig();
+//        $this->request = $request;
+//        $this->getRoutesConfig();
     }
 
     public function getController(Request $request)
     {
+        $this->request = $request;
+        $this->routes = require (appDir('config/routes.php'));
+
         $this->path = $request->getPathInfo();
         $this->method = strtoupper($request->getMethod());
 
@@ -33,7 +36,6 @@ class Routes
             $this->method = $request->get("_method");
         }
 
-        $this->_request = $request;
         $this->dispatchRoute();
 
         if ($this->controller != '') {
@@ -43,47 +45,51 @@ class Routes
         }
     }
 
-    private function getRoutesConfig()
-    {
-        $this->routes = yaml_decode(appDir('config/routes.yaml'));
-    }
-
     private function dispatchRoute()
     {
-        $requestURIS = explode('/', $this->_request->getPathInfo());
+        $requestURIS = explode('/', $this->request->getPathInfo());
         $realURIS_segments = [];
         foreach ($requestURIS as $URI) {
             if ($URI != '') {
                 $realURIS_segments[] = $URI;
             }
         }
-        $count_realURIS = count($realURIS_segments);
-
+        $count_realURIS = count($realURIS_segments)?:0;
         $routes_in_method = $this->routes[$this->method];
-
         $this->removeEndSlash($routes_in_method);
         $routes = array_keys($routes_in_method);
 
+        $load_default = true;
         foreach ($routes as $route) {
-
             $route_segments = explode('/', $route);
             $count_segments = count($route_segments);
+
             if ($count_realURIS === $count_segments) {
-
                 $route_with_config = $routes_in_method[$route];
-                $result = $this->compareUriToRoute($realURIS_segments, $route_segments, $route_with_config);
-                if ($result !== false) {
-
-                    $controller_method = explode('@', $route_with_config['page']);
-                    $controller = $controller_method[0];
-                    $method = $controller_method[1];
-                    array_push($result, $this->_request);
-                    $controller_in_namespace = "\\LoveSimple\\Controllers\\".$controller;
-                    $this->controller = call_user_func_array([new $controller_in_namespace, $method], $result);
-
+                $params = $this->compareUriToRoute($realURIS_segments, $route_segments, $route_with_config);
+                if ($params !== false) {
+                    array_push($params, $this->request);
+                    $this->setController($route_with_config['page'], $params);
+                    $load_default = false;
                 }
             }
         }
+        if ($load_default){
+            $this->setController($this->routes['default']['page'], [$this->request]);
+        }
+    }
+    private function setController($route, $param){
+        $controller = $this->getControllerFromRoute($route);
+        $method = $this->getMethodFromRoute($route);
+        $controller_in_namespace = "\\LoveSimple\\Controllers\\".$controller;
+        $this->controller = call_user_func_array([new $controller_in_namespace, $method], $param);
+    }
+    private function getControllerFromRoute($route){
+        return explode('@', $route)[0];
+    }
+
+    private function getMethodFromRoute($route){
+        return explode('@', $route)[1];
     }
 
     private function removeEndSlash(array &$arr)
@@ -132,5 +138,4 @@ class Routes
             return $params;
         }
     }
-
 }

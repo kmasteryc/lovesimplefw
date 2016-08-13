@@ -26,4 +26,8 @@ class Article extends Model{
     public function cate(){
         return $this->belongsTo(Cate::class);
     }
+    public function scopeLast6($q){
+        return $q->take(6);
+    }
+
 }

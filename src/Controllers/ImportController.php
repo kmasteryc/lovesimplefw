@@ -71,7 +71,7 @@ class ImportController extends Controller
 
     public function store()
     {
-        $url = $this->requestVars->get('url');
+        $url = $this->request->get('url');
         $client = new Client;
         $response = $client->get($url)->getBody();
 
@@ -86,7 +86,7 @@ class ImportController extends Controller
             $new_article->article_title = $this->getTitle($article);
             $new_article->article_info = $this->getInfo($article);
             $new_article->article_content = $this->getContent($article);
-            $new_article->cate_id = $this->requestVars->get('cate_id');
+            $new_article->cate_id = $this->request->get('cate_id');
 
             var_dump($new_article->toArray());
             $new_article->save();

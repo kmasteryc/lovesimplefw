@@ -11,7 +11,6 @@ use Symfony\Component\HttpFoundation\Request;
 
 class App
 {
-    use DIContainer;
     protected $route;
     public function __construct()
     {

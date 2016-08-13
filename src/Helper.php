@@ -65,11 +65,8 @@ function yaml_decode($link)
  */
 function config($key = '')
 {
-    if ($key == '') {
-        return yaml_decode(__DIR__ . "/../config/parameters.yaml")['parameters'];
-    } else {
-        return yaml_decode(__DIR__ . "/../config/parameters.yaml")['parameters'][$key];
-    }
+    $config = require(__DIR__ . "/../config/app.php");
+    return $config[$key];
 }
 
 function pre($var)

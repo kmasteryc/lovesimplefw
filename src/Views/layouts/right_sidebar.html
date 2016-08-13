@@ -38,10 +38,15 @@
                 {% endfor %}
             </ul>
         </div>
-        <div role=" tabpanel" class="tab-pane" id="video">
+        <div role="tabpanel" class="tab-pane" id="video">
             <ul>
-                <li class="cat-item"><a href="#">Tag</a></li>
-                <li class="cat-item"><a href="#">Tag 2</a></li>
+                {% for tag in all_tags %}
+                    <li class="cat-item">
+                        <a href="{{ "#{url}tag/#{tag.tag_slug}" }}">
+                            {{ tag.tag_title }}
+                        </a>
+                    </li>
+                {% endfor %}
             </ul>
         </div>
     </div>

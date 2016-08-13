@@ -6,13 +6,13 @@ use Illuminate\Support\Collection;
 
 class Tag extends Model
 {
-//    public $table = 'tags';
     protected $fillable = ['tag_title'];
     public $timestamps = false;
 
-//    public function __construct(){
-//        parent::__construct();
-//    }
+    public function setTagTitle($value){
+        $this->attributes['tag_title'] = $value;
+        $this->attributes['tag_slug'] = str_slug($value);
+    }
 
     public function articles()
     {
@@ -26,7 +26,7 @@ class Tag extends Model
                 return trim($item) != '';
             })
             ->map(function ($item) {
-                $item = htmlspecialchars($item);
+                $item = htmlspecialchars(trim($item));
 //                todo: Cant use mass assignment here. Why?
                 $tag = Tag::where('tag_title', $item)->first();
 

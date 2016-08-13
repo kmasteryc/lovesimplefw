@@ -5,10 +5,10 @@
             <div class="latest_newsarea">
                 <span>Tin mới cập nhật</span>
                 <ul id="ticker01" class="news_sticker">
-                    {% for article in new_articles %}
+                    {% for new_article in new_articles %}
                     <li>
-                        <a href="{{ "#{url}chuyen-muc/#{article.cate.cate_slug}/#{article.article_slug}" }}">
-                            {{ article.article_title }}
+                        <a href="{{ "#{url}chuyen-muc/#{new_article.cate.cate_slug}/#{new_article.article_slug}" }}">
+                            {{ new_article.article_title }}
                         </a>
                     </li>
                     {% endfor %}

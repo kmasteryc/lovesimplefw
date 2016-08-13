@@ -16,6 +16,7 @@ use LoveSimple\Libs\Menu;
 use LoveSimple\Models\Cate;
 use LoveSimple\Models\Article;
 use LoveSimple\Models\Tag;
+use Symfony\Component\HttpFoundation\Response;
 
 class ArticleController extends Controller
 {
@@ -52,13 +53,13 @@ class ArticleController extends Controller
 
     public function store()
     {
-        $tag_ids = Tag::getTagIdsFromString($this->requestVars->get('tags'));
+        $tag_ids = Tag::getTagIdsFromString($this->request->get('tags'));
 
         $article = new Article;
-        $article->article_title = $this->requestVars->get('article_title');
-        $article->article_info = $this->requestVars->get('article_info');
-        $article->article_content = $this->requestVars->get('article_content');
-        $article->cate_id = $this->requestVars->get('cate_id');
+        $article->article_title = $this->request->get('article_title');
+        $article->article_info = $this->request->get('article_info');
+        $article->article_content = $this->request->get('article_content');
+        $article->cate_id = $this->request->get('cate_id');
         $article->save();
         $article->tags()->sync($tag_ids);
 
@@ -79,15 +80,15 @@ class ArticleController extends Controller
 
     public function update($id)
     {
-        $tag_ids = Tag::getTagIdsFromString($this->requestVars->get('tags'));
+        $tag_ids = Tag::getTagIdsFromString($this->request->get('tags'));
         $article = Article::find($id);
-        $article->article_title = $this->requestVars->get('article_title');
-        $article->article_info = $this->requestVars->get('article_info');
-        $article->article_content = $this->requestVars->get('article_content');
-        $article->cate_id = $this->requestVars->get('cate_id');
+        $article->article_title = $this->request->get('article_title');
+        $article->article_info = $this->request->get('article_info');
+        $article->article_content = $this->request->get('article_content');
+        $article->cate_id = $this->request->get('cate_id');
         $article->save();
         $article->tags()->sync($tag_ids);
-        return $this->redirect(baseDir('article/index'));
+        return $this->back();
     }
 
     public function show($cate_slug, $article_slug)
