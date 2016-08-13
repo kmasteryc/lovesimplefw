@@ -6,6 +6,7 @@
  * Time: 22:54
  */
 namespace LoveSimple;
+use Hoa\Bench\Bench;
 use LoveSimple\Models\Cate;
 use LoveSimple\Models\Article;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -20,6 +21,7 @@ class Controller{
     protected $requestVars;
     protected $request;
     protected $session;
+    protected $bench;
 
     public function __construct()
     {
@@ -27,6 +29,7 @@ class Controller{
 
         $this->request = Request::createFromGlobals();
         $this->requestVars = $this->request->request;
+        $this->bench = new Bench;
 
         $this->session = new Session;
         $this->session->start();
@@ -54,16 +57,31 @@ class Controller{
         $data['user'] = ['name'=>'admin', 'level'=>2];
         $data['url'] = config('url');
         $data['menus'] = (new Menu)->displayNavMenu(Models\Cate::get());
+        $this->bench->test->start();
+        echo "WTF";
+        $this->bench->test->stop();
+        $this->bench->loadmenucate->start();
         $data['all_cates'] = Cate::all();
+        $this->bench->loadmenucate->stop();
+        $this->bench->loadpopularandnewarticle->start();
         $data['popular_articles'] = Article::orderBy('article_view','DESC')->with('cate')->take(5)->get();
         $data['new_articles'] = Article::orderBy('created_at','DESC')->with('cate')->take(10)->get();
+        $this->bench->loadpopularandnewarticle->stop();
 //        echo($data['menus']);
 //        exit();
+        $this->bench->render->start();
         $content = $this->twig->render('layout3.html', $data);
+        $this->bench->render->stop();
         return Response::create($content);
     }
 
     public function redirect($url){
         return new RedirectResponse($url);
+    }
+
+    public function __destruct()
+    {
+        // TODO: Implement __destruct() method.
+        if (config('env') == 'DEV') echo($this->bench);
     }
 }

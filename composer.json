@@ -16,7 +16,9 @@
     "respect/validation": "^1.1",
     "symfony/http-foundation": "^3.1",
     "guzzlehttp/guzzle": "^6.2",
-    "fzaninotto/faker": "^1.6"
+    "fzaninotto/faker": "^1.6",
+    "illuminate/pagination": "^5.2",
+    "hoa/bench": "3.16.03.15"
   },
   "autoload": {
     "psr-4": {

@@ -21,7 +21,7 @@ class Article extends Model{
         return "http://placehold.it/100x100";
     }
     public function tags(){
-        return $this->hasMany(Tag::class);
+        return $this->belongsToMany(Tag::class);
     }
     public function cate(){
         return $this->belongsTo(Cate::class);

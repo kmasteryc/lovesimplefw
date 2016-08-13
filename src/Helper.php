@@ -113,3 +113,7 @@ function showBreadCrumb(Cate $current_cate)
 function randStr(){
     return substr(md5(rand(0,99999)),0,5);
 }
+
+function bench(){
+
+}

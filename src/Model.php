@@ -12,16 +12,12 @@ use Illuminate\Database\Eloquent\Model as BaseModel;
 class Model extends BaseModel{
     use DIContainer;
     public static $db;
+    
     public function __construct()
     {
         parent::__construct();
 
         self::$db = $this->container('capsule');
     }
-//    public function fromSlug($slug)
-//    {
-//        echo $slug;
-////        return $this->where(['cate_slug' => $slug])->get();
-//    }
 }
 
