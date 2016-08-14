@@ -9,9 +9,9 @@
         {% if article.tags is not empty %}
             <i class="fa fa-tags"></i>
             {% for tag in article.tags %}
-                <span class="label">
+                <span>
                     <a href="{{ "#{url}tag/#{tag.tag_slug}" }}">{{ tag.tag_title }}</a>
-            </span>
+                </span>
             {% endfor %}
         {% endif %}
     </div>

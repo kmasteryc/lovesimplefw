@@ -93,13 +93,36 @@ class ArticleController extends Controller
 
     public function show($cate_slug, $article_slug)
     {
-
         $article = Article::whereArticleSlug($article_slug)->first();
         $cates = Cate::whereCateSlug($cate_slug)->get();
         $title = $article->article_title;
         $breadcrumb = showBreadCrumb($article->cate);
 
         return $this->view('articles.show', compact('article', 'cates', 'title', 'breadcrumb'));
+    }
+
+    public function showByTag($tag_slug){
+        $perpage = 15;
+        $cur_page = $this->request->query->get('page');
+        $articles = Tag::whereTagSlug($tag_slug)
+            ->first()
+            ->articles()
+            ->orderBy('created_at')
+            ->with('cate')
+            ->get();
+
+        $paginator = new LengthAwarePaginator($articles, $articles->count(), $perpage, $cur_page);
+        $paginator->setPath(baseDir("tag/$tag_slug"));
+
+        $result = $paginator->getCollection()
+            ->slice($cur_page * $perpage, $perpage)
+            ->put('links', $paginator->links());
+
+        return $this->view('articles.show_by_tag', [
+            'articles' => $result,
+            'tag_slug' => $tag_slug,
+            'count' => $articles->count()
+        ]);
     }
 
     public function delete($id)

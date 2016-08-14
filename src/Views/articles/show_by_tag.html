@@ -1,0 +1,27 @@
+<div class="single_page">
+    <ol class="breadcrumb">
+        <li><a href="#">Tags</a></li>
+        <li class="active">{{ tag_slug }} ({{ count }} kết quả)</li>
+    </ol>
+
+    {% for article in articles %}
+        <div class="media">
+            <a class="media-left"
+               href="{{ url }}chuyen-muc/{{ article.cate.cate_slug }}/{{ article.article_slug }}">
+                <img src="{{ article.article_img }}" style="width: 100px; height: auto;">
+            </a>
+            <div class="media-body">
+                <h4 class="media-heading">
+                    <a href="{{ url }}chuyen-muc/{{ article.cate.cate_slug }}/{{ article.article_slug }}">
+                        {{ article.article_title }}
+                    </a>
+                </h4>
+                {{ article.article_info }}
+            </div>
+        </div>
+    {% endfor %}
+
+    <div style="text-align: center">
+        {{ articles.links | raw }}
+    </div>
+</div>

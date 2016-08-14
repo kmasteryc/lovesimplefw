@@ -9,7 +9,7 @@ class Tag extends Model
     protected $fillable = ['tag_title'];
     public $timestamps = false;
 
-    public function setTagTitle($value){
+    public function setTagTitleAttribute($value){
         $this->attributes['tag_title'] = $value;
         $this->attributes['tag_slug'] = str_slug($value);
     }

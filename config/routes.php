@@ -45,6 +45,10 @@ return [
                 [
                     'page' => 'ArticleController@show',
                 ],
+            'tag/{tag_slug}' =>
+                [
+                    'page' => 'ArticleController@showByTag'
+                ],
             'import/create' =>
                 [
                     'page' => 'ImportController@create',
