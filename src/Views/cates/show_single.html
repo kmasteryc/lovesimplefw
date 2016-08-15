@@ -1,8 +1,5 @@
+{{ breadcrumb|raw }}
 <div class="single_page">
-    <ol class="breadcrumb">
-        <li><a href="#">Tags</a></li>
-        <li class="active">{{ tag_slug }} ({{ count }} kết quả)</li>
-    </ol>
 
     {% for article in articles %}
         <div class="media">

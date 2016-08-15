@@ -13,7 +13,7 @@ use LoveSimple\Controller;
 use LoveSimple\Libs\Menu;
 use LoveSimple\Models\Cate;
 use Respect\Validation\Validator as v;
-
+use Illuminate\Pagination\LengthAwarePaginator;
 class CateController extends Controller
 {
     public function index()
@@ -79,24 +79,49 @@ class CateController extends Controller
     public function show($cate_slug)
     {
         $cate = Cate::whereCateSlug($cate_slug)->first();
-//        $cates = $cate
-//            ->getMeAndMyChilds()
-//            ->with('articles')
-//            ->get();
-        $cates = $cate
-            ->getMeAndMyChilds()
-            ->get()
-            ->filter(function ($cate) {
-                return $cate->articles->count() != 0;
-            })
-            ->map(function ($cate) {
-                $cate->articles = $cate->articles->slice(0, 5);
-                return $cate;
-            });
         $breadcrumb = showBreadCrumb($cate);
         $title = $cate->cate_title;
 
-        return $this->view('cates.show', compact("cates", "breadcrumb", "title"));
+        $cate_with_child = $cate
+            ->getMeAndMyChilds()
+            ->get();
+        $cate_with_child->filter(function ($cate) {
+            return $cate->articles->count() != 0;
+        });
+
+        $total_relative_cates = $cate_with_child->count();
+        // Parent with child
+        if ($total_relative_cates > 1) {
+            $cate_with_child->map(function ($cate) {
+                $cate->articles = $cate->articles->slice(0, 5);
+                return $cate;
+            });
+            return $this->view('cates.show', [
+                'cates' => $cate_with_child,
+                'breadcrumb' => $breadcrumb,
+                'title' => $title
+            ]);
+        } else {
+
+            $perpage = 15;
+            $cur_page = $this->request->query->get('page');
+
+            $articles = $cate_with_child->first()->articles;
+
+            $paginator = new LengthAwarePaginator($articles, $articles->count(), $perpage, $cur_page);
+            $paginator->setPath(baseDir("chuyen-muc/$cate_slug"));
+
+            $articles = $paginator->getCollection()
+                ->slice(($cur_page-1) * $perpage, $perpage);
+            $links = $paginator->links();
+            
+            return $this->view('cates.show_single', [
+                'articles' => $articles,
+                'breadcrumb' => $breadcrumb,
+                'links' => $links,
+                'title' => $title
+            ]);
+        }
     }
 
     public function __destruct()

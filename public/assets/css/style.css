@@ -786,6 +786,10 @@ img:hover {
     padding: 4px 10px;
 }
 
+.single_post_content > h2 span a{
+    color: #fff;
+}
+
 .single_post_content_left {
     float: left;
     display: inline;

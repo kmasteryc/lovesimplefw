@@ -24,17 +24,18 @@ class ArticleController extends Controller
     {
         $perpage = 15;
         $cur_page = $this->request->query->get('page');
-        $articles = Article::with('cate')->select('article_title','id')->get();
+        $articles = Article::with('cate')->get();
 
         $paginator = new LengthAwarePaginator($articles, $articles->count(), $perpage, $cur_page);
         $paginator->setPath(baseDir("article/index"));
 
         $result = $paginator->getCollection()
-            ->slice($cur_page * $perpage, $perpage)
-            ->put('links', $paginator->links());
+            ->slice($cur_page * $perpage, $perpage);
+        $links = $paginator->links();
 
         return $this->view('articles.index', [
-            'articles' => $result
+            'articles' => $result,
+            'links' => $links
         ]);
     }
 
@@ -102,7 +103,7 @@ class ArticleController extends Controller
     }
 
     public function showByTag($tag_slug){
-        $perpage = 15;
+        $perpage = 10;
         $cur_page = $this->request->query->get('page');
         $articles = Tag::whereTagSlug($tag_slug)
             ->first()
@@ -115,13 +116,14 @@ class ArticleController extends Controller
         $paginator->setPath(baseDir("tag/$tag_slug"));
 
         $result = $paginator->getCollection()
-            ->slice($cur_page * $perpage, $perpage)
-            ->put('links', $paginator->links());
+            ->slice(($cur_page * $perpage), $perpage);
+        $links = $paginator->links();
 
         return $this->view('articles.show_by_tag', [
             'articles' => $result,
             'tag_slug' => $tag_slug,
-            'count' => $articles->count()
+            'count' => $articles->count(),
+            'links' => $links
         ]);
     }
 

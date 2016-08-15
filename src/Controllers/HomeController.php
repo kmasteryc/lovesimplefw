@@ -2,6 +2,7 @@
 namespace LoveSimple\Controllers;
 
 use LoveSimple\Controller;
+use LoveSimple\Models\Article;
 use LoveSimple\Models\Cate;
 
 class HomeController extends Controller
@@ -10,7 +11,6 @@ class HomeController extends Controller
     {
         $cates = Cate::with('articles')->get();
 
-        $this->bench->collection->start();
         $cates = $cates->filter(function ($cate) {
             return $cate->articles->count() != 0;
         })
@@ -18,8 +18,12 @@ class HomeController extends Controller
                 $cate->articles = $cate->articles->slice(0, 5);
                 return $cate;
             });
-//        dd($cates[2]->articles);
-        $this->bench->collection->stop();
-        return $this->view('home.index', compact('cates'));
+
+        $slide_articles = Article::orderBy('created_at','DESC')->take(3)->with('cate')->get();
+
+        return $this->view('home.index', [
+            'cates' => $cates,
+            'slide_articles' => $slide_articles,
+        ]);
     }
 }
