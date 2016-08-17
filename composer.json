@@ -23,6 +23,9 @@
   "autoload": {
     "psr-4": {
       "LoveSimple\\" : "src/"
-    }
+    },
+    "files" : [
+      "src/Helper.php"
+    ]
   }
 }

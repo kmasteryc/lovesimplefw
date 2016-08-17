@@ -1,7 +1,5 @@
 <?php
 require "../vendor/autoload.php";
-require "../src/Helper.php";
-
 
 if (config('env') == 'DEV'){
     error_reporting(E_ALL);
