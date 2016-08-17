@@ -4,3 +4,4 @@
 /node_modules
 composer.lock
 public/assets/img/upload
+/config/app.php
