@@ -16,12 +16,15 @@ use LoveSimple\Libs\Menu;
 use LoveSimple\Models\Cate;
 use LoveSimple\Models\Article;
 use LoveSimple\Models\Tag;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class ArticleController extends Controller
 {
     public function index($request)
     {
+
         $perpage = 15;
         $cur_page = $this->request->query->get('page');
         $articles = Article::with('cate')->get();
@@ -69,6 +72,9 @@ class ArticleController extends Controller
 
     public function edit($id)
     {
+        $this->session->set('user_name','aaaa');
+        $this->session->set('user_level', 2);
+
         $article = Article::find($id);
         $cates = Cate::all();
         $cates_html = (new Menu)->displaySelectedMenuNoHide($cates, $article->cate);
@@ -99,7 +105,9 @@ class ArticleController extends Controller
         $title = $article->article_title;
         $breadcrumb = showBreadCrumb($article->cate);
 
-        return $this->view('articles.show', compact('article', 'cates', 'title', 'breadcrumb'));
+        $related_articles = Article::where('cate_id', $article->cate->id)->inRandomOrder()->take(3)->get();
+
+        return $this->view('articles.show', compact('article', 'cates', 'title', 'breadcrumb', 'related_articles'));
     }
 
     public function showByTag($tag_slug){

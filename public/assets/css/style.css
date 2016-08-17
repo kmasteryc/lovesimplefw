@@ -12,6 +12,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 body {
     background: #f5f5f5;
+    font-family: 'Open Sans', sans-serif;
 }
 
 ul {
@@ -216,13 +217,13 @@ img:hover {
 /*scrol to top*/
 
 .scrollToTop {
-    bottom: 105px;
+    bottom: 10px;
     display: none;
     font-size: 32px;
     font-weight: bold;
     height: 50px;
     position: fixed;
-    right: 75px;
+    right: 10px;
     text-align: center;
     text-decoration: none;
     width: 50px;
@@ -323,7 +324,7 @@ img:hover {
     font-size: 45px;
     font-weight: bold;
     color: #000;
-    font-family: 'Roboto';
+    font-family: 'Open Sans';
 }
 
 .logo img {
@@ -819,7 +820,7 @@ img:hover {
 
 .bsbig_fig figcaption {
     color: #333;
-    font-family: "Oswald", sans-serif;
+    font-family: "Open Sans", sans-serif;
     font-size: 23px;
     font-weight: 300;
     margin-top: 10px;
@@ -860,7 +861,7 @@ img:hover {
 }
 
 .spost_nav .media-body > a {
-    font-family: "Oswald", sans-serif;
+    font-family: "Open Sans", sans-serif;
 }
 
 .featured_img {
@@ -1110,7 +1111,7 @@ figure.effect-layla:hover img {
 .single_sidebar > h2 {
     background: none repeat scroll 0 0 #151515;
     color: #fff;
-    font-family: "Oswald", sans-serif;
+    font-family: "Open Sans", sans-serif;
     font-size: 18px;
     font-weight: 400;
     margin-bottom: 10px;
@@ -1167,7 +1168,7 @@ figure.effect-layla:hover img {
     font-size: 15px;
     border-radius: 0;
     border: none;
-    font-family: "Oswald", sans-serif;
+    font-family: "Open Sans", sans-serif;
     -webkit-transition: all 0.5s;
     -mz-transition: all 0.5s;
     -ms-transition: all 0.5s;
@@ -1529,13 +1530,9 @@ figure.effect-layla:hover img {
     margin-bottom: 20px;
 }
 
-.related_post > h2 {
+.related_post > h3 {
     border-bottom: 1px solid #e3e3e3;
     padding-bottom: 5px;
-}
-
-.related_post > h2 i {
-    font-size: 25px;
 }
 
 .related_post .spost_nav li {
@@ -1848,6 +1845,10 @@ figure.effect-layla:hover img {
 }
 
 @media (max-width: 480px ) {
+    #header, #navArea, #newsSection, #contentSection, #footer{
+        padding-left: 5px;
+        padding-right: 5px;
+    }
     .top_nav {
         text-align: center;
     }
@@ -1901,6 +1902,10 @@ figure.effect-layla:hover img {
 }
 
 @media (max-width: 360px ) {
+    #header, #navArea, #newsSection, #contentSection, #footer{
+        padding-left: 5px;
+        padding-right: 5px;
+    }
     .latest_newsarea span {
         font-size: 12px;
         line-height: 2.2em;
@@ -1929,6 +1934,10 @@ figure.effect-layla:hover img {
 }
 
 @media (max-width: 320px ) {
+    #header, #navArea, #newsSection, #contentSection, #footer{
+        padding-left: 5px;
+        padding-right: 5px;
+    }
     .sociallink_nav li a {
         padding: 5px 10px;
     }

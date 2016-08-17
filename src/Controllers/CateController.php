@@ -85,7 +85,7 @@ class CateController extends Controller
         $cate_with_child = $cate
             ->getMeAndMyChilds()
             ->get();
-        $cate_with_child->filter(function ($cate) {
+        $cate_with_child = $cate_with_child->filter(function ($cate) {
             return $cate->articles->count() != 0;
         });
 
@@ -96,6 +96,7 @@ class CateController extends Controller
                 $cate->articles = $cate->articles->slice(0, 5);
                 return $cate;
             });
+
             return $this->view('cates.show', [
                 'cates' => $cate_with_child,
                 'breadcrumb' => $breadcrumb,
