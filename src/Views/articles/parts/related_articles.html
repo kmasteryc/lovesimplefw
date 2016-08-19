@@ -4,11 +4,11 @@
         {% for article in related_articles %}
         <li>
             <div class="media">
-                <a class="media-left" href="single_page.html">
+                <a class="media-left" href="{{ "#{url}chuyen-muc/#{article.cate.cate_slug}/#{article.article_slug}" }}">
                     <img src="{{ article.article_img }}" alt="img">
                 </a>
                 <div class="media-body">
-                    <a class="catg_title" href="single_page.html">
+                    <a class="catg_title" href="{{ "#{url}chuyen-muc/#{article.cate.cate_slug}/#{article.article_slug}" }}">
                         {{ article.article_title }}
                     </a>
                 </div>
