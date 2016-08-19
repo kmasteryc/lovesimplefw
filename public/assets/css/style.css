@@ -208,7 +208,7 @@ img:hover {
     position: absolute;
     left: 50%; /* centers the loading animation horizontally one the screen */
     top: 50%; /* centers the loading animation vertically one the screen */
-    background-image: url(http://dantri.app/assets/img/status.gif); /* path to your loading animation */
+    background-image: url(/assets/img/status.gif); /* path to your loading animation */
     background-repeat: no-repeat;
     background-position: center;
     margin: -100px 0 0 -100px; /* is width and height divided by two */
@@ -498,7 +498,7 @@ img:hover {
 }
 
 .social_nav li.facebook a {
-    background-image: url("http://dantri.app/assets/img/socials.png");
+    background-image: url("/assets/img/socials.png");
     background-position: 0 -30px;
     background-size: 270px 60px;
 }
@@ -510,7 +510,7 @@ img:hover {
 }
 
 .social_nav li.twitter a {
-    background-image: url("http://dantri.app/assets/img/socials.png");
+    background-image: url("/assets/img/socials.png");
     background-position: -30px -30px;
     background-size: 270px 60px;
 }
@@ -522,7 +522,7 @@ img:hover {
 }
 
 .social_nav li.flickr a {
-    background-image: url("http://dantri.app/assets/img/socials.png");
+    background-image: url("/assets/img/socials.png");
     background-position: -60px -30px;
     background-size: 270px 60px;
 }
@@ -534,7 +534,7 @@ img:hover {
 }
 
 .social_nav li.pinterest a {
-    background-image: url("http://dantri.app/assets/img/socials.png");
+    background-image: url("/assets/img/socials.png");
     background-position: -90px -30px;
     background-size: 270px 60px;
 }
@@ -546,7 +546,7 @@ img:hover {
 }
 
 .social_nav li.googleplus a {
-    background-image: url("http://dantri.app/assets/img/socials.png");
+    background-image: url("/assets/img/socials.png");
     background-position: -120px -30px;
     background-size: 270px 60px;
 }
@@ -558,7 +558,7 @@ img:hover {
 }
 
 .social_nav li.vimeo a {
-    background-image: url("http://dantri.app/assets/img/socials.png");
+    background-image: url("/assets/img/socials.png");
     background-position: -150px -30px;
     background-size: 270px 60px;
 }
@@ -570,7 +570,7 @@ img:hover {
 }
 
 .social_nav li.youtube a {
-    background-image: url("http://dantri.app/assets/img/socials.png");
+    background-image: url("/assets/img/socials.png");
     background-position: -180px -30px;
     background-size: 270px 60px;
     width: 60px;
@@ -583,7 +583,7 @@ img:hover {
 }
 
 .social_nav li.mail a {
-    background-image: url("http://dantri.app/assets/img/socials.png");
+    background-image: url("/assets/img/socials.png");
     background-position: -240px -30px;
     background-size: 270px 60px;
     width: 32px;
@@ -648,7 +648,7 @@ img:hover {
 }
 
 .slick-prev {
-    background-image: url(http://dantri.app/assets/img/slider_prev.png);
+    background-image: url(/assets/img/slider_prev.png);
     background-repeat: no-repeat;
     background-position: center;
     left: 10px;
@@ -659,7 +659,7 @@ img:hover {
 }
 
 .slick-next {
-    background-image: url(http://dantri.app/assets/img/slider_next.png);
+    background-image: url(/assets/img/slider_next.png);
     background-repeat: no-repeat;
     background-position: center;
     left: 60px;
