@@ -18,6 +18,7 @@ class ImportController extends Controller
     public function __construct()
     {
         parent::__construct();
+	    $this->is_admin();
     }
 
     public function create()

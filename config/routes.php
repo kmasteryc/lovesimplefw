@@ -5,6 +5,10 @@ return [
     ],
     'GET' =>
         [
+	        'auth' =>
+		        [
+			        'page' => 'AuthController@login',
+		        ],
             'cate/index/' =>
                 [
                     'page' => 'CateController@index',
@@ -60,6 +64,10 @@ return [
         ],
     'POST' =>
         [
+	        'auth' =>
+		        [
+			        'page' => 'AuthController@doLogin',
+		        ],
             'cate/store/' =>
                 [
                     'page' => 'CateController@store',

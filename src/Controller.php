@@ -72,7 +72,7 @@ class Controller
         $this->bench->composer->start();
         $data['data'] = $data;
         $data['page'] = $page;
-        $data['user'] = ['name' => 'admin', 'level' => 2];
+        $data['user'] = $this->session->get('user_name');
         $data['url'] = config('url');
         $data['menus'] = (new Menu)->displayNavMenu(Models\Cate::get());
         $data['all_cates'] = Cate::withCount('articles')->get();
@@ -103,4 +103,10 @@ class Controller
         // TODO: Implement __destruct() method.
         if (config('env') == 'DEV') echo("<p>".$this->bench."</p>");
     }
+
+	public function is_admin(){
+		if ($this->session->get('user_name') != 'admin'){
+			exit();
+		}
+	}
 }

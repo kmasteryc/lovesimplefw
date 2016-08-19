@@ -9,21 +9,18 @@
 namespace LoveSimple\Controllers;
 
 use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Support\Collection;
 use LoveSimple\Controller;
 
 use LoveSimple\Libs\Menu;
 use LoveSimple\Models\Cate;
 use LoveSimple\Models\Article;
 use LoveSimple\Models\Tag;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\Session;
 
 class ArticleController extends Controller
 {
-    public function index($request)
+    public function index()
     {
+	    $this->is_admin();
 
         $perpage = 15;
         $cur_page = $this->request->query->get('page');
@@ -44,6 +41,7 @@ class ArticleController extends Controller
 
     public function create()
     {
+	    $this->is_admin();
         //Validation and flash message
         $this->session->set('user_name', 'admin');
         $this->session->set('user_level', 2);
@@ -57,6 +55,8 @@ class ArticleController extends Controller
 
     public function store()
     {
+	    $this->is_admin();
+
         $tag_ids = Tag::getTagIdsFromString($this->request->get('tags'));
 
         $article = new Article;
@@ -72,6 +72,8 @@ class ArticleController extends Controller
 
     public function edit($id)
     {
+	    $this->is_admin();
+
         $this->session->set('user_name','aaaa');
         $this->session->set('user_level', 2);
 
@@ -87,6 +89,8 @@ class ArticleController extends Controller
 
     public function update($id)
     {
+	    $this->is_admin();
+
         $tag_ids = Tag::getTagIdsFromString($this->request->get('tags'));
         $article = Article::find($id);
         $article->article_title = $this->request->get('article_title');
@@ -137,6 +141,8 @@ class ArticleController extends Controller
 
     public function delete($id)
     {
+	    $this->is_admin();
+
         $article = Article::find($id);
         $article->tags()->detach();
         $article->delete();

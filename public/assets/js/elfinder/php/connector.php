@@ -60,7 +60,7 @@ elFinder::$netDrivers['ftp'] = 'FTP';
 //    exit();
 //}
 
-if (!$session->get('user_name') or $session->get('user_level') !== 2){
+if ($session->get('user_name') == '' or !$session->get('user_name')){
     exit();
 }
 function access($attr, $path, $data, $volume) {

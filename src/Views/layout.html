@@ -63,7 +63,7 @@
 
             <div class="col-lg-4 col-md-4 col-sm-4">
                 <aside class="right_content">
-                    {% if(user['level'] == 2) %}
+                    {% if(user != '') %}
                         {{ include("layouts/admin_right_sidebar.html") }}
                     {% endif %}
                         {{ include("layouts/right_sidebar.html") }}
