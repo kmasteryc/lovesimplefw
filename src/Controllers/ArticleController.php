@@ -74,9 +74,6 @@ class ArticleController extends Controller
     {
 	    $this->is_admin();
 
-        $this->session->set('user_name','aaaa');
-        $this->session->set('user_level', 2);
-
         $article = Article::find($id);
         $cates = Cate::all();
         $cates_html = (new Menu)->displaySelectedMenuNoHide($cates, $article->cate);

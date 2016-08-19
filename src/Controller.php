@@ -106,7 +106,7 @@ class Controller
 
 	public function is_admin(){
 		if ($this->session->get('user_name') != 'admin'){
-			exit();
+			exit('Login required');
 		}
 	}
 }
